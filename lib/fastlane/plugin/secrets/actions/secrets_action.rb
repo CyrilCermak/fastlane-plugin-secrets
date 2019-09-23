@@ -5,19 +5,30 @@ module Fastlane
   module Actions
     class SecretsAction < Action
       def self.run(params)
-        UI.message("The secrets plugin is working!")
+        list = params[:key_value_list]
+        salt = params[:salt]
+        target_path = params[:target_path]
+
+        list.each do |key, value|
+          puts("key:#{key}, value:#{value}")
+
+          encrypted = Helper::SecretsHelper.xor_chiper(salt, value)
+          puts("encrypted:#{encrypted}")
+
+          decrypted = Helper::SecretsHelper.xor_chiper(salt, encrypted)
+          puts("decrypted:#{decrypted}")
+        end
+
+        Helper::SecretsHelper.generate_template("#{target_path}/Secrets.swift")
+
       end
 
       def self.description
-        "Securely store secrets in source code."
+        "Securely store secrets in source code"
       end
 
       def self.authors
-        ["Jörg"]
-      end
-
-      def self.return_value
-        # If your method provides a return value, you can describe here what it does
+        ["Cyril Cermak, Jörg Nestele"]
       end
 
       def self.details
@@ -27,11 +38,15 @@ module Fastlane
 
       def self.available_options
         [
-          # FastlaneCore::ConfigItem.new(key: :your_option,
-          #                         env_name: "SECRETS_YOUR_OPTION",
-          #                      description: "A description of your option",
-          #                         optional: false,
-          #                             type: String)
+          FastlaneCore::ConfigItem.new(key: :key_value_list,
+                                       description: "List of key-value pairs to be obfuscated",
+                                       type: Hash),
+          FastlaneCore::ConfigItem.new(key: :salt,
+                                       description: "Salt key that is used as passphrase for the XOR chiper",
+                                       is_string: true),
+          FastlaneCore::ConfigItem.new(key: :target_path,
+                                       description: "Path of the auto-generated Secrets.swift file",
+                                       is_string: true)
         ]
       end
 
@@ -40,7 +55,7 @@ module Fastlane
         # See: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
         #
         # [:ios, :mac, :android].include?(platform)
-        true
+        [:ios, :mac].include?(platform)
       end
     end
   end

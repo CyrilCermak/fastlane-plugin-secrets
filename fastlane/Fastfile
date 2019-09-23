@@ -1,3 +1,10 @@
 lane :test do
-  secrets
+  secrets(
+    salt: "IMPROVE-THIS-SECRET",
+    target_path: ".",
+    key_value_list: {
+      "google_map_key" => "ABCDEFGHIJKLM",
+      "some_api_token" => "AFGDFGDFAJGADFJGAFJ",
+    }
+  )
 end
