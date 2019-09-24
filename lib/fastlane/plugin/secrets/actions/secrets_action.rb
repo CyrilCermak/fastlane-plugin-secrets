@@ -9,18 +9,14 @@ module Fastlane
         salt = params[:salt]
         target_path = params[:target_path]
 
+        bytes = [salt.bytes]
+
         list.each do |key, value|
-          puts("key:#{key}, value:#{value}")
-
           encrypted = Helper::SecretsHelper.xor_chiper(salt, value)
-          puts("encrypted:#{encrypted}")
-
-          decrypted = Helper::SecretsHelper.xor_chiper(salt, encrypted)
-          puts("decrypted:#{decrypted}")
+          bytes << key.bytes << encrypted.bytes
         end
 
-        Helper::SecretsHelper.generate_template("#{target_path}/Secrets.swift")
-
+        Helper::SecretsHelper.inject_secrets(bytes, "#{target_path}/Secrets.swift")
       end
 
       def self.description
