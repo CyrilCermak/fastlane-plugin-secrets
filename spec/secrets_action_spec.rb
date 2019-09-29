@@ -9,7 +9,7 @@ describe Fastlane::Actions::SecretsAction do
           "API_TOKEN" => "51NLb1ntbw9DCFPseOSu3Zlvp2EpCTVt"
         },
         :salt => "simsalabim",
-        :target_path => "output/"
+        :target_path => "output"
       }
 
       Fastlane::Actions::SecretsAction.run(args)
