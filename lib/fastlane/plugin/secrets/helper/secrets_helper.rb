@@ -12,7 +12,9 @@ module Fastlane
         bytes_variable = "private let bytes: [[UInt8]] = #{secret_bytes}"
         swift_secrets = template.sub "/* SECRET BYTES */", bytes_variable
 
-        File.open(file, "w") do { |f| f.puts swift_secrets }
+        File.open(file, "w") do |f|
+          f.puts swift_secrets
+        end
       end
 
       def self.xor_chiper(key, string)

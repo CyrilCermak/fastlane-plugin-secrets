@@ -1,4 +1,4 @@
-name: Ruby Gem
+name: Fastlane Plugin Secret
 
 on:
   pull_request:
