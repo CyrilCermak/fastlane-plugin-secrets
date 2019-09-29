@@ -1,9 +1,18 @@
 describe Fastlane::Actions::SecretsAction do
   describe '#run' do
-    it 'prints a message' do
-      expect(Fastlane::UI).to receive(:message).with("The secrets plugin is working!")
+    it 'does something' do
+      #expect(Fastlane::UI).to receive(:message).with("The secrets plugin is working!")
 
-      Fastlane::Actions::SecretsAction.run(nil)
+      args => {
+        :key_value_list => {
+          "SECRET_KEY" => "kL7o0y4QMI",
+          "API_TOKEN" => "51NLb1ntbw9DCFPseOSu3Zlvp2EpCTVt"
+        },
+        :salt => "simsalabim",
+        :target_path => "output/"
+      }
+
+      Fastlane::Actions::SecretsAction.run(args)
     end
   end
 end
