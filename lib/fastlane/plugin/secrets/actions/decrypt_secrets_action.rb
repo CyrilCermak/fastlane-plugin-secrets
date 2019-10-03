@@ -1,6 +1,5 @@
 require 'fastlane/action'
 require 'mobile-secrets'
-require_relative '../helper/secrets_helper'
 
 module Fastlane
   module Actions
