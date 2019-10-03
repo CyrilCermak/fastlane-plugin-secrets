@@ -1,10 +1,17 @@
 lane :test do
-  secrets(
-    salt: "IMPROVE-THIS-SECRET",
+  encrypt_secrets(
+    hash_key: "IMPROVE-THIS-SECRET",
+    language: "swift",
     target_path: ".",
-    key_value_list: {
+    secrets_dir_path: "./TestProject/",
+    secrets: {
       "google_map_key" => "ABCDEFGHIJKLM",
       "some_api_token" => "AFGDFGDFAJGADFJGAFJ",
     }
+  )
+
+  decrypt_secrets(
+    file_path: "./TestProject/secrets.gpg",
+    target_path: "./TestProject/"
   )
 end
