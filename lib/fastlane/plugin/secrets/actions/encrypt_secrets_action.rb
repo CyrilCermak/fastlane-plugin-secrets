@@ -14,6 +14,7 @@ module Fastlane
         secrets_dict = params[:secrets]
         target_path = "#{Dir.pwd}/#{params[:target_path]}/secrets.swift"
         config_yml = {"MobileSecrets" => {"hashKey"=>hash_key,"language"=>language, "secrets"=>secrets_dict}}.to_yaml
+        
         MobileSecrets::SecretsHandler.new.encrypt "#{secrets_dir_path}/secrets.gpg", config_yml, secrets_dir_path
       end
 
