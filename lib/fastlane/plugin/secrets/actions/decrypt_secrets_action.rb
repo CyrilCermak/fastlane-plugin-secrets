@@ -15,7 +15,6 @@ module Fastlane
 
         return secrets_handler.inject_secrets [[]], target_path if empty
 
-
         clean tmp_decrypted_secrets_file
         if private_key_path && password
           sh("gpg", "-v", "--pinentry-mode", "loopback", "--passphrase", password, "--import", private_key_path)
