@@ -2,7 +2,6 @@ lane :test do
   encrypt_secrets(
     hash_key: "IMPROVE-THIS-SECRET",
     language: "swift",
-    target_path: ".",
     secrets_dir_path: "./TestProject/",
     secrets: {
       "google_map_key" => "ABCDEFGHIJKLM",
@@ -12,6 +11,6 @@ lane :test do
 
   decrypt_secrets(
     file_path: "./TestProject/secrets.gpg",
-    target_path: "./TestProject/"
+    target_path: "./TestProject/",
   )
 end
