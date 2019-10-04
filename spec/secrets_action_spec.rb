@@ -6,7 +6,6 @@ describe Fastlane::Actions::EncryptSecretsAction do
         :hash_key => "simsalabim",
         :language => "swift",
         :target_path => "output",
-        :secrets_dir_path => ".",
         :secrets => {
           "SECRET_KEY" => "kL7o0y4QMI",
           "API_TOKEN" => "51NLb1ntbw9DCFPseOSu3Zlvp2EpCTVt"
