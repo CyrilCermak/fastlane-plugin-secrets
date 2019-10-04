@@ -7,9 +7,14 @@ module Fastlane
       def self.run(params)
         secrets_path = params[:file_path]
         password = params[:password]
+        empty = params[:empty]
         private_key_path = params[:private_key_path]
         target_path = "#{Dir.pwd}/#{params[:target_path]}/secrets.swift"
         tmp_decrypted_secrets_file = "/tmp/secrets"
+        secrets_handler = MobileSecrets::SecretsHandler.new
+
+        return secrets_handler.inject_secrets [[]], target_path if empty
+
 
         clean tmp_decrypted_secrets_file
         if private_key_path && password
@@ -21,7 +26,6 @@ module Fastlane
           sh("gpg", "--output", tmp_decrypted_secrets_file, "--decrypt", secrets_path)
         end
 
-        secrets_handler = MobileSecrets::SecretsHandler.new
         yml_config = File.read tmp_decrypted_secrets_file
         bytes = secrets_handler.process_yaml_config yml_config
         secrets_handler.inject_secrets bytes, target_path
@@ -60,7 +64,12 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :private_key_path,
                                        description: "Path to a private key for GPG",
                                        is_string: true,
-                                       optional: true)
+                                       optional: true),
+          FastlaneCore::ConfigItem.new(key: :empty,
+                                       description: "Path to a private key for GPG",
+                                       type: Boolean,
+                                       optional: true,
+                                       default_value: false)
         ]
       end
 
