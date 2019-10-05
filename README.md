@@ -1,3 +1,6 @@
+# Mobile secrets
+Working with this plugin is described in detail here:
+https://medium.com/@cyrilcermak/mobile-secrets-8458ceaf4c16
 # secrets plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-secrets)
