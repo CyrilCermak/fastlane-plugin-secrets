@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.author        = ['Cyril Cermak', 'Jörg Nestele']
 
   spec.summary       = 'Securely store secrets in source code.'
-  spec.homepage      = "https://github.com/nestele/fastlane-plugin-secrets"
+  spec.homepage      = "https://github.com/cyrilcermak/fastlane-plugin-secrets"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
