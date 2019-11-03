@@ -9,13 +9,13 @@ lane :test do
       "google_map_key" => "ABCDEFGHIJKLM",
       "some_api_token" => "AFGDFGDFAJGADFJGAFJ",
     },
-    files: ["tmp.txt"]
+    files: ["tmp.txt", "GoogleMaps.plist"]
   )
 
   decrypt_secrets(
     file_path: "./MySecretApp/secrets.gpg",
     target_path: "./MySecretApp/",
-    # password: "YOUR_GPG_PASSWORD", #Optional, if not set pinentry will be used
-    # private_key_path: "PATH_TO_PK_FOR_GPG" #Optional
+    password: "YOUR_GPG_PASSWORD", #Optional, if not set pinentry will be used
+    private_key_path: "PATH_TO_PK_FOR_GPG" #Optional
   )
 end
