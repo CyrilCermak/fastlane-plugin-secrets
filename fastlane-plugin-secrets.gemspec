@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'your-dependency', '~> 1.0.0'
 
-  spec.add_development_dependency('mobile-secrets', '0.0.5')
+  spec.add_development_dependency('mobile-secrets', '0.0.8')
   spec.add_development_dependency('pry')
   spec.add_development_dependency('bundler')
   spec.add_development_dependency('rspec')
