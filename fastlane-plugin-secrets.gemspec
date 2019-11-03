@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.author        = ['Cyril Cermak', 'Jörg Nestele']
 
   spec.summary       = 'Securely store secrets in source code.'
-  spec.homepage      = "https://github.com/nestele/fastlane-plugin-secrets"
+  spec.homepage      = "https://github.com/cyrilcermak/fastlane-plugin-secrets"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   # spec.add_dependency 'your-dependency', '~> 1.0.0'
 
-  spec.add_development_dependency('mobile-secrets', '0.0.5')
+  spec.add_development_dependency('mobile-secrets', '0.0.8')
   spec.add_development_dependency('pry')
   spec.add_development_dependency('bundler')
   spec.add_development_dependency('rspec')

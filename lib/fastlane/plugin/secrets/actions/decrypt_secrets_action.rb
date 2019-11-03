@@ -26,8 +26,10 @@ module Fastlane
         end
 
         yml_config = File.read tmp_decrypted_secrets_file
-        bytes = secrets_handler.process_yaml_config yml_config
-        secrets_handler.inject_secrets bytes, target_path
+        file_names_bytes, secrets_bytes = secrets_handler.process_yaml_config yml_config
+        renderer = MobileSecrets::SourceRenderer.new "swift"
+        renderer.render_template secrets_bytes, file_names_bytes, target_path
+
         clean tmp_decrypted_secrets_file
       end
 

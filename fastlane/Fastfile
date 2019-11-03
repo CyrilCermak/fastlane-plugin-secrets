@@ -1,16 +1,21 @@
 lane :test do
   encrypt_secrets(
-    hash_key: "IMPROVE-THIS-SECRET",
+    hash_key: "KokoBelloKokoKokoBelloKokoKokoBe",
     language: "swift",
-    secrets_dir_path: "./TestProject/",
+    secrets_dir_path: "./MySecretApp/",
+    should_include_password: true,
     secrets: {
+      "firebase_key" => "ABCDEFGHIJKLM",
       "google_map_key" => "ABCDEFGHIJKLM",
       "some_api_token" => "AFGDFGDFAJGADFJGAFJ",
-    }
+    },
+    files: ["tmp.txt", "GoogleMaps.plist"]
   )
 
   decrypt_secrets(
-    file_path: "./TestProject/secrets.gpg",
-    target_path: "./TestProject/",
+    file_path: "./MySecretApp/secrets.gpg",
+    target_path: "./MySecretApp/",
+    password: "YOUR_GPG_PASSWORD", #Optional, if not set pinentry will be used
+    private_key_path: "PATH_TO_PK_FOR_GPG" #Optional
   )
 end
